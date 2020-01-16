@@ -39,7 +39,7 @@ spec:
           containerPort: 5000
         env:
         - name: APP_NAME
-          value: CloudAcademy.DevOps.K8s
+          value: CloudAcademy.DevOps.K8s.GitOps
         - name: APP_VERSION
           value: v1.0.1
       volumes:
