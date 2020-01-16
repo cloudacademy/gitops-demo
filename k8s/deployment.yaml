@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: cloudacademy
+  annotations:
+    flux.weave.works/tag.flask: glob:develop-v*
+    flux.weave.works/automated: 'true'
+  labels:
+    role: frontend
+    env: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: frontend
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.16-perl
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: nginx-proxy-config
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: nginx.conf
+      - name: flask
+        image: docker.io/cloudacademydevops/flaskapp:develop-v1.4.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 5000
+        env:
+        - name: APP_NAME
+          value: CloudAcademy.DevOps.K8s
+        - name: APP_VERSION
+          value: v1.0.1
+      volumes:
+      - name: nginx-proxy-config
+        configMap:
+          name: nginx-conf
