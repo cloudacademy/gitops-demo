@@ -32,7 +32,7 @@ spec:
           mountPath: /etc/nginx/conf.d/default.conf
           subPath: nginx.conf
       - name: flask
-        image: docker.io/cloudacademydevops/flaskapp:develop-v1.7.0
+        image: docker.io/cloudacademydevops/flaskapp:develop-v1.8.0
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
