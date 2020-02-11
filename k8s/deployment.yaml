@@ -41,7 +41,7 @@ spec:
         - name: APP_NAME
           value: CloudAcademy.K8s.GitOps
         - name: APP_VERSION
-          value: v1.0.4
+          value: v1.0.5
       volumes:
       - name: nginx-proxy-config
         configMap:
