@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.16-alpine-perl
+        image: nginx:1.18-perl
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
