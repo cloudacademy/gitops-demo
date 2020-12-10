@@ -114,21 +114,21 @@ The following steps demonstrate how Flux will automatically rollout a new K8s de
 
 5.1. Create your own DockerHub account (https://hub.docker.com/) - say for now you create it with a username of `xyzdevops`, resulting in a new DockerHub repo docker.io/xyzdevops
 
-5.2. Git clone this FORKed Github repo locally, and then navigate into the FlaskApp dir ./gitops-demo/tree/master/flaskapp
+5.2. Git clone this FORKed Github repo locally, and then navigate into the FlaskApp dir `./gitops-demo/tree/master/flaskapp`
 
-5.3. Perform a local docker build and tag it to be stored in your new DockerHub repo docker.io/xyzdevops - making sure that the tag name continues to use the flaskapp:develop-v1.8.0 naming format - since this is used by Flux (particularly the version numbering format)
+5.3. Perform a local docker build and tag it to be stored in your new DockerHub repo `docker.io/xyzdevops` - making sure that the tag name continues to use the `flaskapp:develop-v1.8.0` naming format - since this is used by Flux (particularly the version numbering format)
 
 ```
 docker build -t  gregdevops/flaskapp:develop-v1.8.0 .
 ```
 
-5.4. Push the resulting Docker image up into your new DockerHub repo docker.io/xyzdevops
+5.4. Push the resulting Docker image up into your new DockerHub repo `docker.io/xyzdevops`
 
 ```
 docker push xyzdevops/flaskapp:develop-v1.8.0
 ```
 
-5.5 Back within your FORKed Github repo, update (line 35) the K8s deployment manifest (./k8s/deployment.yaml) to use your newly hosted docker image: docker.io/xyzdevops/flaskapp:develop-v1.8.0
+5.5 Back within your FORKed Github repo, update (line 35) the K8s deployment manifest `./k8s/deployment.yaml` to use your newly hosted docker image: `docker.io/xyzdevops/flaskapp:develop-v1.8.0`
 
 5.6. Commit and push the updates (K8s deployment manifest) back up into your FORKed repo
 
